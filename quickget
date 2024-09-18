@@ -774,6 +774,10 @@ function releases_kali() {
     echo current kali-weekly
 }
 
+function editions_kali() {
+    echo live installer
+}
+
 function releases_kdeneon() {
     echo user testing unstable developer
 }
@@ -1903,7 +1907,7 @@ function get_kali() {
     local HASH=""
     local ISO=""
     local URL="https://cdimage.kali.org/${RELEASE}"
-    ISO=$(web_pipe "${URL}/?C=M;O=D" | grep -o ">kali-linux-.*-installer-amd64.iso" | head -n 1 | cut -c 2-)
+    ISO=$(web_pipe "${URL}/?C=M;O=D" | grep -o ">kali-linux-.*-${EDITION}-amd64.iso" | head -n 1 | cut -c 2-)
     HASH=$(web_pipe "${URL}/SHA256SUMS" | grep -v torrent | grep "${ISO}" | cut -d' ' -f1)
     echo "${URL}/${ISO} ${HASH}"
 }
